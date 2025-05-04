@@ -1,3 +1,4 @@
 export default {
-    prerender: false
-  }
+  prerender: false,
+  baseServer: '/dashboard-niengiam/'
+}

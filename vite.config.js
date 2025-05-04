@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [
     tailwindcss(), react(), vike()
   ],
-  base: "/dashboard-niengiam",
-  publicDir: './public'
+  base: "/dashboard-niengiam/",
+  publicDir: './public',
+  server: { allowedHosts: true }
 })
