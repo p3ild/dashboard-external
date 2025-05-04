@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [
     tailwindcss(), react(), vike()
   ],
-  // base: "./",
+  base: "/dashboard-niengiam",
   publicDir: './public'
 })
