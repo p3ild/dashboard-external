@@ -1,0 +1,68 @@
+{
+    "orgPicker": "Organisation unit",
+    "selectOrg": "Select organisation unit",
+    "selectMoreOptions": "Options",
+    "required": "Required",
+    "periodPicker": {
+        "selectType": {
+            "date": "Date",
+            "date2": "Start/end dates",
+            "quarter": "Quarter",
+            "quarter2": "Start/end quarters",
+            "week": "Week",
+            "week2": "Start/end weeks",
+            "month": "Monthly",
+            "month2": "Start/end months",
+            "year": "Yearly",
+            "year2": "Start/end years",
+            "sixMonth": "Six-monthly"
+        },
+        "title": "Period",
+        "select": "select",
+        "from": "From",
+        "to": "to",
+        "month": "month",
+        "six_month": "six monthly",
+        "day": "day",
+        "week": "week",
+        "year": "year"
+    },
+    "globalProgress": {
+        "title": "Initializing data ...",
+        "systemsData": " System data",
+        "usersData": "User data"
+    },
+    "months": {
+        "t1": "January",
+        "t2": "February",
+        "t3": "March",
+        "t4": "April",
+        "t5": "May",
+        "t6": "June",
+        "t7": "July",
+        "t8": "August",
+        "t9": "September",
+        "t10": "October",
+        "t11": "November",
+        "t12": "December"
+    },
+    "headers": {
+        "period": "Period",
+        "org": "Org unit",
+        "stt": "No.",
+        "orgName": "Org unit"
+    },
+    "button": {
+        "back": "Back to report list",
+        "changeFilter": "Select OrgUnit & Period",
+        "excel": "Export excel",
+        "close": "Close",
+        "loadReport": "Load",
+        "printReport": "Print"
+    },
+    "corePicker": {
+        "title": "Organisation unit and Period"
+    },
+    "reportList": "Report list",
+    "selectLanguage": "Select language"
+}

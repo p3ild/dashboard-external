@@ -11,18 +11,23 @@
 //  - vite-node (https://github.com/antfu/vite-node)
 //  - HatTip (https://github.com/hattipjs/hattip)
 //    - You can use Bati (https://batijs.dev/) to scaffold a Vike + HatTip app. Note that Bati generates apps that use the V1 design (https://vike.dev/migration/v1-design) and Vike packages (https://vike.dev/vike-packages)
-
 import express from 'express'
 import compression from 'compression'
 import { renderPage, createDevMiddleware } from 'vike/server'
 import { root } from './root.js'
+import { networkUtils } from '../core/network/index.server.js'
+import { serverConfig } from './config/config.server.js'
 const isProduction = process.env.NODE_ENV === 'production'
-
+async function initServer() {
+  const instance = await networkUtils.init({
+    ...serverConfig
+  });
+}
 startServer()
 
 async function startServer() {
+  await initServer();
   const app = express()
-
   app.use(compression())
 
   // Vite integration
@@ -62,4 +67,5 @@ async function startServer() {
   const port = process.env.PORT || 3000
   app.listen(port)
   console.log(`Server running at http://localhost:${port}`)
+
 }

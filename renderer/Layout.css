@@ -1,7 +1,40 @@
-#sidebar a {
-  padding: 2px 10px;
-  margin-left: -10px;
+@import "tailwindcss"; 
+
+
+table.sticky-table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
-#sidebar a.is-active {
-  background-color: #eee;
+
+.sticky-table tr {
+    border: 0;
+}
+
+.sticky-table td,
+.sticky-table th {
+    text-align: center;
+    font-size: 10px;
+    border-right: 1px solid #e0e0e0 !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.sticky-table td:last-child,
+.sticky-table th:last-child {
+    border-right: 0;
+}
+
+.sticky-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.sticky-table th {
+    position: sticky;
+    background-color: #ffffff;
+    top:0px;
+    z-index: 1;
+}
+
+.sticky-table .table-cell {
+    position: sticky;
+    background-color: #ffffff;
 }
