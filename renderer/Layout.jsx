@@ -34,7 +34,7 @@ Frame.propTypes = {
 function Frame({ children }) {
   return (
     <div
-      className='w-full h-full m-2'
+      className='w-full h-full'
     >
       {children}
     </div>

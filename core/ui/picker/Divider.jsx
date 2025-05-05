@@ -1,0 +1,1 @@
+export default ({ className }) => <div className={`!p-0 h-[20px] mx-5 !border-[1px] rounded-full text-gray-400 ${className}`} />

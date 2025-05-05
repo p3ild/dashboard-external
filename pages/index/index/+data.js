@@ -15,6 +15,14 @@ const data = async (pageContext) => {
   const meData = CacheUtils.get('me');
   let { orgViewData } = meData || {}
 
+  const networkUtils = CacheUtils.get('networkUtils');
+
+  console.log({
+    networkUtilsUUID: networkUtils.INSTANCE_UID
+  });
+
+  let itemsData = [];
+
 
   return {
     orgViewData

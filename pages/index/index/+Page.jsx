@@ -1,8 +1,8 @@
 export default Page
 
-import { Affix, Button, Input } from 'antd'
+import { Affix, Button, Input, Skeleton } from 'antd'
 import { useData } from '../../../renderer/useData'
-import { useEffect, useMemo } from 'react';
+import { cloneElement, Suspense, useEffect, useMemo, useState } from 'react';
 import { useCoreMetaState, useStorePicker } from '../../state_management/corePicker';
 import { useShallow } from 'zustand/shallow';
 import { navigate } from 'vike/client/router';
@@ -54,8 +54,9 @@ function Page() {
     firstLoadApp && <>
       <Affix offsetTop={0}
       >
-        <div className="flex items-center  bg-[#2c6693] shadow-sm backdrop-blur-2xl flex-row px-2 gap-x-2">
-          <FaCloudDownloadAlt className='text-white text-[50rem] w-[60px] h-[60px]' />
+        <div className="flex items-center  bg-[#2c6693] shadow-sm backdrop-blur-2xl flex-row p-1 gap-x-2">
+          <img className={'w-[50px] h-[50px]'} src={'/logo.png'} />
+          {/* <FaCloudDownloadAlt className='text-white text-[50rem] w-[60px] h-[60px]' /> */}
           <p className='font-bold text-2xl text-white whitespace-nowrap'>DASHBOARD THỐNG KÊ Y TẾ</p>
         </div>
 
@@ -69,6 +70,9 @@ function Page() {
           <span>Dashboard thống kê y tế cung cấp số liệu sơ bộ về các chỉ tiêu thống kê cơ bản ngành y tế. Số liệu do các cơ sở y tế báo cáo qua phần mềm Thống kê y tế</span>
         </div>
         <div className="grid grid-cols-3 gap-5 lg:xl:grid-cols-3">
+          {/* <Suspense className={"h-[500px] col-span-3"} fallback={<div>Loading Item 1...</div>}>
+            <Item1 />
+          </Suspense> */}
           <CardSummary
             {
             ...{
@@ -171,7 +175,14 @@ function Page() {
 
 
 const CardSummary = ({ cardName, cardClassName, icon, children }) => {
-  return <div className={`bg-white hover:shadow-2xl py-5 px-4 rounded-xl w-full text-base overflow-hidden  ${cardClassName}`}>
-    {children}
+  let [loading, setLoading] = useState(true);
+  const childrenWithProps = cloneElement(children, { loading, setLoading })
+  return <div className={`relative bg-white hover:shadow-2xl py-5 px-4 rounded-xl w-full text-base overflow-hidden  ${cardClassName}`}>
+    <div id={'dev-indicator'} className='absolute top-2 right-2 '>  </div>
+    {loading && <Skeleton active />}
+    <div className={`${loading ? 'hidden' : ''} w-full h-full`}>
+      {childrenWithProps}
+    </div>
+
   </div>
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { PROVINCE_NAME } from '../constant';
 import { faker } from '@faker-js/faker';
 import { Skeleton, Tooltip } from 'antd';
- 
+
 const province = PROVINCE_NAME.map(e => e.name);
 
 
@@ -50,7 +50,7 @@ function getColor(value) {
     const max = 100;
     const ratio = Math.max(0, Math.min(1, (value - min) / (max - min)));
 
-   
+
 
     for (let i = 0; i < gradient.length - 1; i++) {
         const a = gradient[i];
@@ -75,16 +75,14 @@ function getColor(value) {
     };
 }
 
-export default function DoctorHeatmapTable() {
-    const [loaded, setLoaded] = useState(false);
+export default ({ loading, setLoading }) => {
     useEffect(() => {
         setTimeout(() => {
-            setLoaded(true);
-
+            setLoading(false)
         }, faker.number.int({ min: 1000, max: 3000 }));
     }, [])
     return (
-        !loaded ? <Skeleton active /> : <div className=''>
+        <div className=''>
             <p className='text-xl font-bold' >{`5. Số lượt khám bệnh`}</p>
             <div className={'mt-1 mb-3 w-[200px]'}>
                 <p className="whitespace-nowrap italic ">*Nguồn số liệu: Cơ sơ y tế báo cáo theo Thông tư 37</p>
@@ -134,7 +132,7 @@ export default function DoctorHeatmapTable() {
                 <div
                     className="relative w-4 h-[500px] rounded"
                     style={{
-                        background: `linear-gradient(to top, ${gradient.map(e=>e.color).join(', ')}`, // đỏ đậm → nhạt
+                        background: `linear-gradient(to top, ${gradient.map(e => e.color).join(', ')}`, // đỏ đậm → nhạt
                     }}
                 >
                     <div className="w-4 rounded h-full">

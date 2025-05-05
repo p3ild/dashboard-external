@@ -6,9 +6,8 @@ import { PROVINCE_NAME } from "../constant";
 import { Skeleton } from "antd";
 import { chartBuilder } from '../../../../core/ui/chartjsBuilder';
 const { max } = _;
-export default () => {
+export default ({ loading, setLoading }) => {
     const ref = useRef(null);
-    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
 
@@ -136,7 +135,7 @@ export default () => {
             }
         });
         setTimeout(() => {
-            setLoaded(true);
+            setLoading(false);
             setTimeout(() => {
                 Chart.getChart(ref.current)?.destroy();
                 new Chart(ref.current, chartConfig)
@@ -146,7 +145,7 @@ export default () => {
 
     }, [])
     return (
-        !loaded ? <Skeleton active /> : <div className="flex flex-col w-full h-full">
+        <div className="flex flex-col w-full h-full">
             <p className="text-xl font-bold" >{`8. Số phụ nữ đẻ được khám thai ≥ 4 lần trong 3 thời kỳ`}</p>
             <div className={'mt-1 mb-3 w-[200px]'}>
                 <p className="whitespace-nowrap italic ">*Nguồn số liệu: Cơ sở y tế báo cáo theo Thông tư 37</p>

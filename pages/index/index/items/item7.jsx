@@ -6,11 +6,11 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { PROVINCE_NAME } from "../constant";
 import { Skeleton } from "antd";
 import _ from "lodash";
+import { chartBuilder } from "../../../../core/ui/chartjsBuilder";
 const { max } = _;
 
-export default () => {
+export default ({ loading, setLoading }) => {
     const ref = useRef(null);
-    const [loaded, setLoaded] = useState(false);
 
 
     useEffect(() => {
@@ -57,83 +57,38 @@ export default () => {
             ]
         };
 
-        const chartConfig = {
+        const chartConfig = chartBuilder({
             type: 'bar',
             data: data,
-            plugins: [ChartDataLabels],
             options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scaleShowValues: false,
-                layout: {
-                    padding: {
-                        top: 1,
-                        right: 16,
-                        bottom: 0,
-                        left: 8
-                    }
-                },
                 scales: {
-                    x: {
-                        ticks: {
-                            maxRotation: 60,
-                            minRotation: 30,
-                            padding: 2,
-                            autoSkip: false,
-                            fontSize: '5px'
-                        },
-                        grid: {
-                            display: false,
-                        }
-                    },
                     y: {
-                        beginAtZero: true,
-                        max: max(dataSetCommune.data) + 30,
-                        // grid: {
-                        //     display: false,
-                        // }
+                        suggestedMax: max(dataSetCommune.data) + 50,
                     },
                 },
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            footer: function (tooltipItems) {
-                                let completenessPercentage = dataSetCommuneCompleteness.data[tooltipItems[0].dataIndex];
+                            afterLabel: function (tooltipItem) {
+                                let completenessPercentage = dataSetCommuneCompleteness.data[tooltipItem.dataIndex];
                                 return `% Xã có báo cáo: ${completenessPercentage}%`;
                             }
                         }
 
                     },
                     datalabels: {
-                        offset: -20,
-                        formatter: value => `${value}`,
+                        offset: -13,
+                        backgroundColor: 'rgba(0, 0, 0, 0)',
                         color: '#000',
-                        font: function (context) {
-                            var w = context.chart.width;
-                            return {
-                                size: w < 512 ? 10 : 12,
-                            };
-                        },
-                        // display: function (context) {
-                        //     return context.dataset.data[context.dataIndex] > 30;
-                        // }
-                    },
-                    legend: {
-                        position: 'bottom',
                     },
                     title: {
-                        display: true,
-                        position: 'top',
                         text: 'Việt Nam - 2024',
-
-                        // position: 'bottom',
-                        // text: 'Số xã/phường đạt tiêu chí quốc gia về y tế xã Viêt Nam - 2024'
                     }
                 }
             }
-        };
+        });
         setTimeout(() => {
-            setLoaded(true);
+            setLoading(false);
             setTimeout(() => {
                 Chart.getChart(ref.current)?.destroy();
                 new Chart(ref.current, chartConfig)
@@ -143,7 +98,7 @@ export default () => {
     }, [])
 
     return (
-        !loaded ? <Skeleton active /> : <div className="flex flex-col w-full h-full">
+        <div className="flex flex-col w-full h-full">
             <p className="text-xl font-bold" >{`7. Tỷ lệ suy dinh dưỡng trẻ dưới 5 tuổi`}</p>
             <div className={'mt-1 mb-3 w-[200px]'}>
                 <p className="whitespace-nowrap italic ">*Nguồn số liệu: Viện Dinh dưỡng quốc gia</p>

@@ -24,11 +24,11 @@ export const chartBuilder = (chartConfig) => {
     //Legend
     set(chartConfig, 'options.plugins.legend', {
         position: 'bottom',
-       
+
         labels: {
             usePointStyle: true,
             boxWidth: 30
-          }
+        }
     })
 
     //titleChart
@@ -36,6 +36,12 @@ export const chartBuilder = (chartConfig) => {
         position: 'top',
         display: true,
         ...get(chartConfig, 'options.plugins.title')
+    })
+
+    //titleChart
+    set(chartConfig, 'options', {
+        borderRadius: 3,
+        ...get(chartConfig, 'options')
     })
 
     //DataLabels

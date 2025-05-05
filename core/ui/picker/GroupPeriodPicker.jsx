@@ -1,4 +1,4 @@
-import { Button, Divider, Dropdown, Popover, Select, Space, Tabs } from "antd"
+import { Button, Dropdown, Popover, Select, Space, Tabs } from "antd"
 import PeriodPicker from "./periodpicker"
 import { useMemo, useState } from "react"
 import { useShallow } from "zustand/react/shallow"
@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next"
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import { useCoreMetaState } from "../../../pages/state_management/corePicker"
 import { useTrans } from "../../translation/i18n"
+import Divider from "./Divider"
 
 
 export default () => {
@@ -56,7 +57,7 @@ export default () => {
                     })()}
                     onChange={onChange}
                 />
-                <Divider type={"vertical"} className="!p-0 h-[20px] !border-[1.5px]" />
+                <Divider className={'!h-[20px]'} />
             </div>
         ,
         [JSON.stringify({

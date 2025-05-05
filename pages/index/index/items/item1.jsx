@@ -9,9 +9,9 @@ import _ from "lodash";
 import { chartBuilder } from "../../../../core/ui/chartjsBuilder";
 const { max } = _;
 
-export default () => {
+export default ({ loading, setLoading }) => {
+
     const ref = useRef(null);
-    const [loaded, setLoaded] = useState(false);
 
 
     useEffect(() => {
@@ -63,7 +63,6 @@ export default () => {
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true,
                         suggestedMax: max(dataSetCommune.data) + 50,
                     },
                 },
@@ -89,7 +88,7 @@ export default () => {
             }
         });
         setTimeout(() => {
-            setLoaded(true);
+            setLoading(false);
             setTimeout(() => {
                 Chart.getChart(ref.current)?.destroy();
                 new Chart(ref.current, chartConfig)
@@ -99,7 +98,7 @@ export default () => {
     }, [])
 
     return (
-        !loaded ? <Skeleton active /> : <div className="flex flex-col w-full h-full">
+        <div className="flex flex-col w-full h-full">
             <p className="text-xl font-bold" >{`1. Số xã/phường đạt tiêu chí quốc gia về y tế xã`}</p>
             <div className={'mt-1 mb-3 w-[200px]'}>
                 <p className="whitespace-nowrap italic ">*Nguồn số liệu: Cơ sơ y tế báo cáo theo Thông tư 37</p>

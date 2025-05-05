@@ -8,15 +8,13 @@ const province = PROVINCE_NAME.map(e => e.name);
 
 const data = province.map((e, idx) => Array(12).fill(0).map(e => faker.number.int({ min: 0, max: 500 })));
 
-export default () => {
-    const [loaded, setLoaded] = useState(false);
+export default ({ loading, setLoading }) => {
     useEffect(() => {
         setTimeout(() => {
-            setLoaded(true);
+            setLoading(false);
         }, faker.number.int({ min: 1000, max: 3000 }));
     }, [])
     return (
-        !loaded ? <Skeleton active /> :
             <div className='p-2'>
                 <p className='text-xl font-bold'>{`6. Bảng chỉ số về hệ thống cơ sở y tế và trang thiết bị`}</p>
                 <div className={'mt-1 mb-3 w-[200px]'}>

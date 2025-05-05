@@ -301,7 +301,7 @@ export const SixMonthlyPicker = (props) => {
         }
       }
     } />
-    <Divider className="!p-0 !m-0 mb-0" />
+    {false && <Divider className="!p-0 !m-0 mb-0 " />}
 
     <Select
       onChange={(value, option) => onChangeLocal({ value, option })}
@@ -322,7 +322,7 @@ export const SixMonthlyPicker = (props) => {
     />
 
     {outputSelected?.start?.labelFormat && <>
-      <Divider className='!p-0 m-0' />
+      {false && <Divider className='!p-0 m-0' />}
       <p className='flex items-center gap-1 ml-3 font-bold'>Đã chọn: {outputSelected?.start?.labelFormat} <FaCheckCircle className='text-green-400' /></p>
     </>}
 

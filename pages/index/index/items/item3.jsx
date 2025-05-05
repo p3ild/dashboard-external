@@ -73,16 +73,14 @@ function getColor(value) {
     };
 }
 
-export default function DoctorHeatmapTable() {
-    const [loaded, setLoaded] = useState(false);
+export default ({ loading, setLoading }) => {
     useEffect(() => {
         setTimeout(() => {
-            setLoaded(true);
-
+            setLoading(false);
         }, faker.number.int({ min: 1000, max: 3000 }));
     }, [])
     return (
-        !loaded ? <Skeleton active /> : <div className=''>
+        <div className=''>
             <p className='text-xl font-bold' >{`3. Số giường kế hoạch`}</p>
             <div className={'mt-1 mb-3 w-[200px]'}>
                 <p className="whitespace-nowrap italic ">*Nguồn số liệu: Cơ sơ y tế báo cáo theo Thông tư 37</p>
